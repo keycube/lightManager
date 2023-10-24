@@ -17,10 +17,6 @@ def get_voltage(pin):
 battery_voltage = get_voltage(vbat_voltage)
 print("VBat voltage: {:.2f}".format(battery_voltage))
 
-storage.remount("/", False)
-with open('x.txt', 'w') as f:
-    f.write(b'abcdefg')
-
 COLUMNS = 4
 ROWS = 4
 
