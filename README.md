@@ -2,6 +2,7 @@
 Light Manager Module
 
 [Light Effect List](https://www.pc-100.com/mechanical-keyboard-features-parameters/back-light-effects-mechanical-keyboard/)
+[Open Source Light Manager](https://github.com/CalcProgrammer1/OpenRGB)
 
 Fonctionnalité bientôt disponible :
 - Séquence personnalisée de lumière (modularité)
