@@ -4,19 +4,19 @@ LightManager is a light management module for all existing keycube models and si
 
 # Cube Pattern
 Centered on the top face :
-![cube pattern centered on the top face](https://github.com/keycube/lightManager/blob/main/assets/Cube%20Top.png?raw=true)
+![cube pattern centered on the top face](https://github.com/keycube/lightManager/blob/main/assets/Cube_Top.png?raw=true)
 
 Centered on the north face :
-![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube%20North.png?raw=true)
+![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube_North.png?raw=true)
 
 Centered on the south face :
-![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube%20South.png?raw=true)
+![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube_South.png?raw=true)
 
 Centered on the east face :
-![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube%20East.png?raw=true)
+![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube_East.png?raw=true)
 
 Centered on the west face :
-![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube%20West.png?raw=true)
+![cube pattern centered on the north face](https://github.com/keycube/lightManager/blob/main/assets/Cube_West.png?raw=true)
 
 ## Credits
 Thibaut Breton [Website](https://tbreton.fr) [Github](https://github.com/ayrozdzn)
