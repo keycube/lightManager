@@ -9,6 +9,7 @@ class LightEffect:
         self.sequence = sequence
 
 class LightManager:
+    # Return distance of a point from the center of a matrix
     def matriceDist(self, matrice):
         centre = (len(matrice) // 2) - (len(matrice)+1)%2*0.5
         
@@ -25,6 +26,7 @@ class LightManager:
 
         return matriceUp
 
+    # Rotate a matrix by 90 degrees, n: 0 = 0°, 1 = 90°, 2 = 180°, 3 = 270°/-90°
     def matRot(self, matrix, n):
         rotMatrix = [[0] * len(matrix) for _ in range(len(matrix[0]))]
 
@@ -41,6 +43,7 @@ class LightManager:
 
         return self.matRot(rotMatrix, n - 1)
     
+    # Create a cube pattern centered on the top face of the cube with all connected faces
     def createCubeTopView(self) -> list[list[int]]:
         cubeTopView = [[-1] * (self.size * 3) for _ in range(self.size * 3)]
 
@@ -54,6 +57,7 @@ class LightManager:
 
         return cubeTopView
     
+    # Create a cube pattern centered on the north face of the cube with all connected faces
     def createCubeNorthView(self) -> list[list[int]]:
         cubeNorthView = [[-1] * (self.size * 5) for _ in range(self.size * 3)]
 
@@ -69,6 +73,7 @@ class LightManager:
 
         return cubeNorthView
     
+    # Create a cube pattern centered on the south face of the cube with all connected faces
     def createCubeSouthView(self) -> list[list[int]]:
         cubeSouthView = [[-1] * (self.size * 5) for _ in range(self.size * 3)]
 
@@ -84,6 +89,7 @@ class LightManager:
 
         return cubeSouthView
     
+    # Create a cube pattern centered on the east east of the cube with all connected faces
     def createCubeEastView(self) -> list[list[int]]:
         cubeEastView = [[-1] * (self.size * 3) for _ in range(self.size * 5)]
 
@@ -99,6 +105,7 @@ class LightManager:
 
         return cubeEastView
     
+    # Create a cube pattern centered on the west face of the cube with all connected faces
     def createCubeWestView(self) -> list[list[int]]:
         cubeWestView = [[-1] * (self.size * 3) for _ in range(self.size * 5)]
 
@@ -114,6 +121,7 @@ class LightManager:
 
         return cubeWestView
 
+    # Create a raimbow pattern with all steps and gestion of top face step by distance
     def createRaimbow(self) -> list[list[int]]:
         raimbowPattern = []
         raimbowTop = self.matriceDist(self.TF)
@@ -132,9 +140,11 @@ class LightManager:
 
         return raimbowPattern
     
+    # Update the raimbow color
     def raimbowColorUpdate(self) -> None:
         self.RAIMBOWCOLOR = (self.RAIMBOWCOLOR - 1) % 255
 
+    # Update the brightness
     def brightnessUpdate(self) -> None:
         self.BRIGHTNESS = self.BRIGHTNESS + self.BRIGHTNESS_INCREASE
 
