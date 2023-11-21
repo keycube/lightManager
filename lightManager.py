@@ -1,5 +1,6 @@
 import keypad
 import neopixel
+import time
 
 class LightEffect:
     # Type: 1 = Sequence
@@ -9,20 +10,27 @@ class LightEffect:
         self.sequence = sequence
 
 class LightManager:
+    # Return the list of element in a matrix
+    def matFlat(self, matrix):
+        flattened = []
+        for row in matrix:
+            flattened.extend(row)
+        return flattened
+
     # Return distance of a point from the center of a matrix
-    def matriceDist(self, matrice):
-        centre = (len(matrice) // 2) - (len(matrice)+1)%2*0.5
+    def matDist(self, matrix):
+        centre = (len(matrix) // 2) - (len(matrix)+1)%2*0.5
         
         distances = []
-        for i in range(len(matrice)):
-            for j in range(len(matrice)):
+        for i in range(len(matrix)):
+            for j in range(len(matrix)):
                 distance = max(abs(i - centre), abs(j - centre))
                 distances.append(int(distance)) 
 
         matriceUp = [[] for _ in range(distances[0]+1)]
-        for y in range(len(matrice)):
-            for x in range(len(matrice)):
-                matriceUp[distances[len(matrice)*y + x]].append(matrice[y][x])
+        for y in range(len(matrix)):
+            for x in range(len(matrix)):
+                matriceUp[distances[len(matrix)*y + x]].append(matrix[y][x])
 
         return matriceUp
 
@@ -124,7 +132,7 @@ class LightManager:
     # Create a raimbow pattern with all steps and gestion of top face step by distance
     def createRaimbow(self) -> list[list[int]]:
         raimbowPattern = []
-        raimbowTop = self.matriceDist(self.TF)
+        raimbowTop = self.matDist(self.TF)
         for i in range(len(raimbowTop)):
             raimbowPattern.append(raimbowTop[i])
         
@@ -142,7 +150,7 @@ class LightManager:
     
     # Update the raimbow color
     def raimbowColorUpdate(self) -> None:
-        self.RAIMBOWCOLOR = (self.RAIMBOWCOLOR - 1) % 255
+        self.RAIMBOWCOLOR = (self.RAIMBOWCOLOR + self.RAIMBOWDIRECTION) % 255
 
     # Update the brightness
     def brightnessUpdate(self) -> None:
@@ -151,13 +159,58 @@ class LightManager:
         if self.BRIGHTNESS >= 0.1 or self.BRIGHTNESS <= 0.01:
             self.BRIGHTNESS_INCREASE = -self.BRIGHTNESS_INCREASE
 
+    def detectFace(self, key: int) -> int:
+        if key in self.matFlat(self.TF):
+            return [self._CTV, (self.matFlat(self._CTV).index(key) // len(self._CTV[0]), self.matFlat(self._CTV).index(key) % len(self._CTV[0]))]
+        elif key in self.matFlat(self.NF):
+            return [self._CNV, (self.matFlat(self._CNV).index(key) // len(self._CNV[0]), self.matFlat(self._CNV).index(key) % len(self._CNV[0]))]
+        elif key in self.matFlat(self.SF):
+            return [self._CSV, (self.matFlat(self._CSV).index(key) // len(self._CSV[0]), self.matFlat(self._CSV).index(key) % len(self._CSV[0]))]
+        elif key in self.matFlat(self.EF):
+            return [self._CEV, (self.matFlat(self._CEV).index(key) // len(self._CEV[0]), self.matFlat(self._CEV).index(key) % len(self._CEV[0]))]
+        elif key in self.matFlat(self.WF):
+            return [self._CWV, (self.matFlat(self._CWV).index(key) // len(self._CWV[0]), self.matFlat(self._CWV).index(key) % len(self._CWV[0]))]
+        else:
+            return -1
+
+    def rippleEffect(self, tab, actual, previous = [], counter = 0):
+        if (len(previous) >= self.size * self.size * 5):
+            self.p.fill((0, 0, 0))
+            return 0
+        
+        for i in range(0, len(actual)):
+            y = actual[i][0]
+            x = actual[i][1]
+            if (y >= 0) and (y < len(tab)) and (x >= 0) and (x < len(tab[0])) and (tab[y][x] != -1):
+                self.p[tab[y][x]] = (255, 0, 0)
+                previous.append(actual[i])
+
+        self.p.show()
+        actual = []
+        
+        for i in range(0, len(previous)):
+            y = previous[i][0]
+            x = previous[i][1]
+            if (y + 1, x) not in previous and (y + 1, x) not in actual:
+                actual.append((y + 1, x))
+            if (y - 1, x) not in previous and (y - 1, x) not in actual:
+                actual.append((y - 1, x))
+            if (y, x + 1) not in previous and (y, x + 1) not in actual:
+                actual.append((y, x + 1))
+            if (y, x - 1) not in previous and (y, x - 1) not in actual:
+                actual.append((y, x - 1))
+
+        time.sleep(0.1)
+        return self.rippleEffect(tab, actual, previous, counter+1)
+
     def __init__(self, size: int, pixels: neopixel.NeoPixel, keys: keypad.KeyMatrix, TF: list[list[int]], NF: list[list[int]], SF: list[list[int]], EF: list[list[int]], WF: list[list[int]]):
         self.RAIMBOWCOLOR: int = 0
+        self.RAIMBOWDIRECTION: int = 1
         self.BRIGHTNESS: int = 0.1
         self.BRIGHTNESS_INCREASE: int = -0.0005
 
-        self.colorEffect: int = 5
-        self.color: int = 0
+        self.colorEffect: int = 6
+        self.color: int = 6
         self.colorSwitch: int = TF[0][0]
 
         self.size: int = size
