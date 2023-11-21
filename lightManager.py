@@ -71,13 +71,13 @@ class LightManager:
 
         for y in range(self.size):
             for x in range(self.size):
-                cubeNorthView[y + self.size * 0][x + self.size * 0] = self.matRot(self.SF, 2)[y][x]
-                cubeNorthView[y + self.size * 0][x + self.size * 1] = self.matRot(self.WF, 1)[y][x]
-                cubeNorthView[y + self.size * 0][x + self.size * 2] = self.matRot(self.NF, 0)[y][x]
-                cubeNorthView[y + self.size * 0][x + self.size * 3] = self.matRot(self.EF, 3)[y][x]
-                cubeNorthView[y + self.size * 0][x + self.size * 4] = self.matRot(self.SF, 2)[y][x]
-                cubeNorthView[y + self.size * 1][x + self.size * 2] = self.matRot(self.TF, 0)[y][x]
-                cubeNorthView[y + self.size * 2][x + self.size * 2] = self.matRot(self.SF, 0)[y][x]
+                cubeNorthView[y + self.size * 0][x + self.size * 2] = self.matRot(self.SF, 2)[y][x]
+                cubeNorthView[y + self.size * 1][x + self.size * 2] = self.matRot(self.TF, 2)[y][x]
+                cubeNorthView[y + self.size * 2][x + self.size * 0] = self.matRot(self.SF, 0)[y][x]
+                cubeNorthView[y + self.size * 2][x + self.size * 1] = self.matRot(self.WF, 1)[y][x]
+                cubeNorthView[y + self.size * 2][x + self.size * 2] = self.matRot(self.NF, 2)[y][x]
+                cubeNorthView[y + self.size * 2][x + self.size * 3] = self.matRot(self.EF, 3)[y][x]
+                cubeNorthView[y + self.size * 2][x + self.size * 4] = self.matRot(self.SF, 0)[y][x]
 
         return cubeNorthView
     
@@ -90,42 +90,42 @@ class LightManager:
                 cubeSouthView[y + self.size * 0][x + self.size * 2] = self.matRot(self.NF, 0)[y][x]
                 cubeSouthView[y + self.size * 1][x + self.size * 2] = self.matRot(self.TF, 0)[y][x]
                 cubeSouthView[y + self.size * 2][x + self.size * 0] = self.matRot(self.NF, 2)[y][x]
-                cubeSouthView[y + self.size * 2][x + self.size * 1] = self.matRot(self.WF, 1)[y][x]
+                cubeSouthView[y + self.size * 2][x + self.size * 1] = self.matRot(self.WF, 3)[y][x]
                 cubeSouthView[y + self.size * 2][x + self.size * 2] = self.matRot(self.SF, 0)[y][x]
-                cubeSouthView[y + self.size * 2][x + self.size * 3] = self.matRot(self.EF, 3)[y][x]
+                cubeSouthView[y + self.size * 2][x + self.size * 3] = self.matRot(self.EF, 1)[y][x]
                 cubeSouthView[y + self.size * 2][x + self.size * 4] = self.matRot(self.NF, 2)[y][x]
 
         return cubeSouthView
     
     # Create a cube pattern centered on the east east of the cube with all connected faces
     def createCubeEastView(self) -> list[list[int]]:
-        cubeEastView = [[-1] * (self.size * 3) for _ in range(self.size * 5)]
+        cubeEastView = [[-1] * (self.size * 5) for _ in range(self.size * 4)]
 
         for y in range(self.size):
             for x in range(self.size):
-                cubeEastView[y + self.size * 0][x + self.size * 0] = self.matRot(self.EF, 2)[y][x]
-                cubeEastView[y + self.size * 1][x + self.size * 0] = self.matRot(self.NF, 3)[y][x]
-                cubeEastView[y + self.size * 2][x + self.size * 0] = self.matRot(self.WF, 0)[y][x]
-                cubeEastView[y + self.size * 2][x + self.size * 1] = self.matRot(self.TF, 0)[y][x]
-                cubeEastView[y + self.size * 2][x + self.size * 2] = self.matRot(self.EF, 0)[y][x]
-                cubeEastView[y + self.size * 3][x + self.size * 0] = self.matRot(self.SF, 1)[y][x]
-                cubeEastView[y + self.size * 4][x + self.size * 0] = self.matRot(self.EF, 2)[y][x]
+                cubeEastView[y + self.size * 0][x + self.size * 2] = self.matRot(self.WF, 1)[y][x]
+                cubeEastView[y + self.size * 1][x + self.size * 2] = self.matRot(self.TF, 1)[y][x]
+                cubeEastView[y + self.size * 2][x + self.size * 0] = self.matRot(self.WF, 3)[y][x]
+                cubeEastView[y + self.size * 2][x + self.size * 1] = self.matRot(self.SF, 0)[y][x]
+                cubeEastView[y + self.size * 2][x + self.size * 2] = self.matRot(self.EF, 1)[y][x]
+                cubeEastView[y + self.size * 2][x + self.size * 3] = self.matRot(self.NF, 2)[y][x]
+                cubeEastView[y + self.size * 2][x + self.size * 4] = self.matRot(self.WF, 3)[y][x]
 
         return cubeEastView
     
     # Create a cube pattern centered on the west face of the cube with all connected faces
     def createCubeWestView(self) -> list[list[int]]:
-        cubeWestView = [[-1] * (self.size * 3) for _ in range(self.size * 5)]
+        cubeWestView = [[-1] * (self.size * 5) for _ in range(self.size * 3)]
 
         for y in range(self.size):
             for x in range(self.size):
-                cubeWestView[y + self.size * 0][x + self.size * 2] = self.matRot(self.WF, 2)[y][x]
-                cubeWestView[y + self.size * 1][x + self.size * 2] = self.matRot(self.NF, 1)[y][x]
-                cubeWestView[y + self.size * 2][x + self.size * 0] = self.matRot(self.WF, 0)[y][x]
-                cubeWestView[y + self.size * 2][x + self.size * 1] = self.matRot(self.TF, 0)[y][x]
-                cubeWestView[y + self.size * 2][x + self.size * 2] = self.matRot(self.EF, 0)[y][x]
-                cubeWestView[y + self.size * 3][x + self.size * 2] = self.matRot(self.SF, 3)[y][x]
-                cubeWestView[y + self.size * 4][x + self.size * 2] = self.matRot(self.WF, 2)[y][x]
+                cubeWestView[y + self.size * 0][x + self.size * 2] = self.matRot(self.EF, 3)[y][x]
+                cubeWestView[y + self.size * 1][x + self.size * 2] = self.matRot(self.TF, 3)[y][x]
+                cubeWestView[y + self.size * 2][x + self.size * 0] = self.matRot(self.EF, 1)[y][x]
+                cubeWestView[y + self.size * 2][x + self.size * 1] = self.matRot(self.NF, 2)[y][x]
+                cubeWestView[y + self.size * 2][x + self.size * 2] = self.matRot(self.WF, 3)[y][x]
+                cubeWestView[y + self.size * 2][x + self.size * 3] = self.matRot(self.SF, 0)[y][x]
+                cubeWestView[y + self.size * 2][x + self.size * 4] = self.matRot(self.EF, 1)[y][x]
 
         return cubeWestView
 
@@ -161,14 +161,19 @@ class LightManager:
 
     def detectFace(self, key: int) -> int:
         if key in self.matFlat(self.TF):
+            print("Top Face")
             return [self._CTV, (self.matFlat(self._CTV).index(key) // len(self._CTV[0]), self.matFlat(self._CTV).index(key) % len(self._CTV[0]))]
         elif key in self.matFlat(self.NF):
+            print("North Face")
             return [self._CNV, (self.matFlat(self._CNV).index(key) // len(self._CNV[0]), self.matFlat(self._CNV).index(key) % len(self._CNV[0]))]
         elif key in self.matFlat(self.SF):
+            print("South Face")
             return [self._CSV, (self.matFlat(self._CSV).index(key) // len(self._CSV[0]), self.matFlat(self._CSV).index(key) % len(self._CSV[0]))]
         elif key in self.matFlat(self.EF):
+            print("East Face")
             return [self._CEV, (self.matFlat(self._CEV).index(key) // len(self._CEV[0]), self.matFlat(self._CEV).index(key) % len(self._CEV[0]))]
         elif key in self.matFlat(self.WF):
+            print("West Face")
             return [self._CWV, (self.matFlat(self._CWV).index(key) // len(self._CWV[0]), self.matFlat(self._CWV).index(key) % len(self._CWV[0]))]
         else:
             return -1
