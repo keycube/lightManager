@@ -46,11 +46,11 @@ class LightManager:
 
         for y in range(self.size):
             for x in range(self.size):
-                cubeTopView[y][x + self.size] = self.NF[y][x]
-                cubeTopView[y + self.size][x + self.size] = self.TF[y][x]
-                cubeTopView[y + self.size][x] = self.WF[y][x]
-                cubeTopView[y + self.size][x + self.size * 2] = self.EF[y][x]
-                cubeTopView[y + self.size * 2][x + self.size] = self.SF[y][x]
+                cubeTopView[y + self.size * 0][x + self.size * 1] = self.matRot(self.NF, 0)[y][x]
+                cubeTopView[y + self.size * 1][x + self.size * 1] = self.matRot(self.TF, 0)[y][x]
+                cubeTopView[y + self.size * 1][x + self.size * 0] = self.matRot(self.WF, 0)[y][x]
+                cubeTopView[y + self.size * 1][x + self.size * 2] = self.matRot(self.EF, 0)[y][x]
+                cubeTopView[y + self.size * 2][x + self.size * 1] = self.matRot(self.SF, 0)[y][x]
 
         return cubeTopView
     
