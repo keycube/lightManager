@@ -4,8 +4,8 @@ LightManager is a light management module for all existing keycube models and si
 
 # Wiki
 
-Attributs
-Methods
+### [Attributes](https://github.com/keycube/lightManager/wiki/Attributes)
+### [Methods](https://github.com/keycube/lightManager/wiki/Methods)
 
 # Credits
 Thibaut Breton [Website](https://tbreton.fr) [Github](https://github.com/ayrozdzn)
