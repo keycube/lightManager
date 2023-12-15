@@ -8,9 +8,9 @@ LightManager is a light management module for all existing keycube models and si
 ### [Methods](https://github.com/keycube/lightManager/wiki/Methods)
 
 # Credits
-Thibaut Breton [Website](https://tbreton.fr) [Github](https://github.com/ayrozdzn)
-OpenRGB [Website](https://openrgb.org) [Github](https://github.com/CalcProgrammer1/OpenRGB)
-Light Effect List [Website](https://www.pc-100.com/mechanical-keyboard-features-parameters/back-light-effects-mechanical-keyboard/)
+#### Thibaut Breton [Website](https://tbreton.fr) [Github](https://github.com/ayrozdzn)
+#### OpenRGB [Website](https://openrgb.org) [Github](https://github.com/CalcProgrammer1/OpenRGB)
+#### Light Effect List [Website](https://www.pc-100.com/mechanical-keyboard-features-parameters/back-light-effects-mechanical-keyboard/)
 
-MIT Licence
-LightManager Assets © 2023 par Thibaut Breton est sous licence CC BY-NC-SA 4.0. Pour afficher une copie de cette licence, visitez http://creativecommons.org/licenses/by-nc-sa/4.0/
+#### MIT Licence
+#### LightManager Assets © 2023 par Thibaut Breton est sous licence CC BY-NC-SA 4.0. Pour afficher une copie de cette licence, visitez http://creativecommons.org/licenses/by-nc-sa/4.0/
