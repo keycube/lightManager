@@ -1,6 +1,5 @@
 import keypad
 import neopixel
-import asyncio
 import time
 
 class LightEffect:
@@ -197,7 +196,7 @@ class LightManager:
             return -1
 
     # Create a ripple effect from a key coordinate
-    async def rippleEffect(self, tab, actual, previous = [], counter = 0):
+    def rippleEffect(self, tab, actual, previous = [], counter = 0):
         interpolateColor = self.interpolate_color((255, 0, 0), (0, 0, 255), 3)
         if (interpolateColor[len(interpolateColor) - 1] != (0,0,0)):
             interpolateColor.append((0,0,0))
@@ -211,7 +210,7 @@ class LightManager:
                         self.p[tab[y][x]] = interpolateColor[min(len(interpolateColor) - 1, i + k)]
                 
                 self.p.show()
-                await asyncio.sleep(0.05)
+                time.sleep(0.05)
 
             return 0
 
@@ -248,11 +247,11 @@ class LightManager:
             if (y, x - 1) not in previousFlat and (y, x - 1) not in actual:
                 actual.append((y, x - 1))
 
-        await asyncio.sleep(0.05)
-        return await self.rippleEffect(tab, actual, previous, counter+1)
+        time.sleep(0.05)
+        return self.rippleEffect(tab, actual, previous, counter+1)
 
-    async def rippleInit(self, tab, actual):
-        await self.rippleEffect(tab, [actual], [], 0)
+    def rippleInit(self, tab, actual):
+        self.rippleEffect(tab, [actual], [], 0)
 
     def __init__(self, size: int, pixels: neopixel.NeoPixel, keys: keypad.KeyMatrix, TF: list[list[int]], NF: list[list[int]], SF: list[list[int]], EF: list[list[int]], WF: list[list[int]]):
         self.RAIMBOWCOLOR: int = 0
